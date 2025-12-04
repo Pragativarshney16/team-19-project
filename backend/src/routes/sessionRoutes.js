@@ -12,11 +12,7 @@ router.get("/:id", auth, async (req, res) => {
   res.json(session);
 });
 router.put("/:id", auth, async (req, res) => {
-  const session = await Session.findByIdAndUpdate(
-    req.params.id,
-    { canvasData: req.body.canvasData },
-    { new: true }
-  );
+  const session = await Session.findByIdAndUpdate(req.params.id, { canvasData: req.body.canvasData }, { new: true });
   res.json(session);
 });
 router.get("/", auth, async (req, res) => {
