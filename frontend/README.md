@@ -16,167 +16,131 @@
 
 ---
 
-## 📚 Table of Contents
+## ❓ Why CollabBoard?
 
-1. [Background](#-background)
-2. [Features](#-features)
-   - [User Features](#user-features)
-   - [Admin / Moderator Features](#admin--moderator-features)
-3. [System Overview & Architecture](#-system-overview--architecture)
-4. [Tech Stack (Suggested)](#-tech-stack-suggested)
-5. [Getting Started](#-getting-started)
-   - [Prerequisites](#prerequisites)
-   - [Installation](#installation)
-   - [Environment Variables](#environment-variables)
-   - [Running the App](#running-the-app)
-6. [Usage Guide](#-usage-guide)
-   - [User Flow](#user-flow)
-   - [Whiteboard Tools](#whiteboard-tools)
-   - [Roles & Permissions](#roles--permissions)
-   - [Chat & Comments](#chat--comments)
-   - [Saving & Exporting](#saving--exporting)
-7. [Real-Time Collaboration](#-real-time-collaboration)
-8. [Security & Non-Functional Requirements](#-security--non-functional-requirements)
-9. [Analytics & Admin Dashboard](#-analytics--admin-dashboard)
-10. [Roadmap](#-roadmap)
-11. [Contributing](#-contributing)
-12. [License](#-license)
+The world is remote-first — but existing tools are expensive, laggy, or not truly collaborative.
+
+CollabBoard is built to solve these gaps by enabling **instant visual collaboration** from anywhere.
+
+| Challenge | CollabBoard Solution |
+|----------|---------------------|
+| Difficult/paid tools | Simple UI, 100% open-source |
+| Sync delays & glitchy UX | Fast low-latency WebSockets |
+| Work doesn’t persist | Save + restore sessions anytime |
+| Lack of collaboration features | Live cursors, chat, presence |
+| Limited sharing options | Export as PNG/JPEG/PDF & share links |
+
+> If **Miro + Jamboard + MS Whiteboard** merged into one open-source tool — you’d get **CollabBoard**. 🚀
 
 ---
 
-## 🧠 Background
+## 📌 Where Can It Be Used?
 
-Remote work, online education, and distributed teams are now the norm. Traditional tools often lack **truly interactive** and **visual** real-time collaboration.
+- 🧑‍💼 Corporate teams — workshops, sprint planning
+- 🏫 Schools & universities — live teaching & group work
+- ✍️ Creators — storyboards, sketching, wireframes
+- 🚀 Hackathons — brainstorming product ideas
+- 🎮 Communities — design games / drawing battles
 
-**CollabBoard** aims to solve that by providing:
+---
 
-- A **shared canvas** where multiple users can draw, type, and annotate together.
-- **Real-time updates** with low latency.
-- **Persistent sessions** that can be saved, organized, and revisited.
-- **Export options** for sharing outcomes as images or PDFs.
-- **Built-in chat** for context-rich collaboration.
+## 🎯 Goals of the Application
+
+- Improve **remote collaboration productivity**
+- Provide a **visual & interactive** workspace
+- Enable **multi-user** real-time editing
+- Support **persistence** & secure access
+- Maintain **fast performance** and smooth UX
 
 ---
 
 ## ✨ Features
 
 ### 👥 User Features
+- 🔐 Authentication (Signup/Login)
+- 🧾 Create & join sessions via link or code
+- 🎨 Drawing tools: Pencil, Eraser, Shapes, Text
+- 📝 Sticky notes & color controls
+- 🔄 Real-time live collaboration
+- 💬 In-session chat
+- 💾 Save sessions & revisit anytime
+- 📤 Export: PNG/JPEG/PDF
+- 🕒 Optional version history
 
-- ✅ **Authentication**
-  - Register, log in, and manage your profile.
-- 🧾 **Whiteboard Sessions**
-  - Create new whiteboard sessions.
-  - Join existing sessions via **unique link** or **session code**.
-- 🎨 **Drawing & Annotation Tools**
-  - Pen & highlighter tools.
-  - Eraser.
-  - Basic shapes (rectangle, circle, line, arrow).
-  - Text boxes.
-  - Sticky notes.
-  - Color & thickness picker.
-- 🤝 **Real-Time Collaboration**
-  - View others’ actions live (in < 2s).
-  - Show participant cursors / presence indicators (optional).
-- 💾 **Persistence**
-  - Save whiteboards to your account.
-  - Load previously saved boards.
-  - Version history (optional, if implemented).
-- 📤 **Export**
-  - Export whiteboard as:
-    - 🖼️ PNG / JPEG.
-    - 📄 PDF.
-- 💬 **Communication**
-  - In-session **chat** for real-time discussion.
-  - Inline **comments** attached to specific areas (optional).
-
-### 🛡️ Admin / Moderator Features
-
-- 👤 **User Management**
-  - View, deactivate/ban users (for misuse).
-- 🧷 **Session Moderation**
-  - Grant / revoke edit access.
-  - Promote/demote users: Owner / Editor / Viewer.
-- 📊 **Analytics Dashboard**
-  - Active sessions count.
-  - Online users.
-  - Most popular tools (pen vs. sticky notes vs. shapes).
-  - Session duration & user participation metrics.
-
-<p align="center">
-  <img src="./docs/admin-dashboard.png" alt="Admin Dashboard Preview" width="800" />
-</p>
+### 🛡 Admin / Moderator Features
+- Manage users (ban / deactivate)
+- Control editing permissions
+- Promote Owner / Editor / Viewer roles
+- Analytics dashboard:
+  - Active users & sessions
+  - Participation metrics
+  - Tool usage statistics
 
 ---
 
 ## 🏗 System Overview & Architecture
 
-At a high level, the system consists of:
+The platform consists of:
 
-- **Client App (Web / Mobile)** – Draw, chat, and interact with boards.
-- **API Server** – Auth, REST/GraphQL APIs, persistence.
-- **Real-Time Server** – WebSocket/Socket server for live collaboration.
-- **Database** – Stores users, sessions, whiteboard data, messages, analytics.
-- **File/Storage Layer** – Stores exports & snapshots.
-
-> Replace the image below with your actual architecture diagram.
+- 🎨 **Web Client** — canvas drawing & real-time UI
+- 🔌 **WebSocket Server** — broadcast board updates instantly
+- 🛠 **REST API** — user auth, session CRUD
+- 🗄 **Database** — stores boards, chat & user data
+- ☁ Storage for exports (images, PDFs)
 
 <p align="center">
-  <img src="./docs/architecture-diagram.png" alt="System Architecture Diagram" width="800" />
+  <img src="./docs/architecture-diagram.png" alt="Architecture Diagram" width="800" />
 </p>
-
-**Core flows:**
-
-- Client connects to server via **WebSocket** for real-time canvas updates.
-- Client uses **REST/GraphQL** for auth, saving/loading boards, and listings.
-- Whiteboard state can be stored as:
-  - JSON of drawing events / operations, or
-  - Vector-based model (shapes, strokes, text objects).
 
 ---
 
 ## 🛠 Tech Stack (Suggested)
 
-You can adapt this section to your actual implementation.
-
-**Frontend (Web)**  
-- ⚛️ React - vite 
-- 🎨 Tailwind CSS  
-- 🕸 Canvas rendering using `HTML5 Canvas` 
-
-**Backend**  
-- 🌐 Node.js + Express 
-- 🔌 Socket.IO - WebSocket for real-time communication  
-- 🗄 MongoDB   for db
-
-**Other**  
-- 🔐 JWT / OAuth2 for authentication  
-- ☁️ mongodb storage storage for exported file
+| Layer | Technology |
+|------|------------|
+| Frontend | React (Vite), TailwindCSS, HTML5 Canvas |
+| Backend | Node.js + Express |
+| Real-time | Socket.IO |
+| Database | MongoDB |
+| Auth | JWT |
+| Storage | MongoDB GridFS or cloud storage |
 
 ---
 
 ## 🚀 Getting Started
 
-> Below is a generic setup. Adjust paths and commands based on your actual project structure.
-
 ### Prerequisites
-
-- [Node.js](https://nodejs.org/) (LTS)
-- Database (MongoDB)
+- Node.js (LTS recommended)
+- MongoDB
 - npm / yarn / pnpm
 
 ### Installation
 
 ```bash
-# 1. Clone the repository
+# Clone the repo
 git clone https://github.com/Pragativarshney16/team-19-project
 cd team-19-project
 
-# 2. Install server dependencies
+# Backend setup
 cd server
 npm install
 npm run dev
 
-# 3. Install client dependencies
+# Frontend setup
 cd ../client
 npm install
 npm run dev
+```
+
+- Add .env
+
+```json
+# Server
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=5000
+
+# Client
+VITE_API_URL=http://localhost:5000/api
+
+```
