@@ -139,23 +139,18 @@ At a high level, the system consists of:
 You can adapt this section to your actual implementation.
 
 **Frontend (Web)**  
-- ⚛️ React / Next.js  
-- 🎨 Tailwind CSS / Chakra UI  
-- 🕸 Canvas rendering using `HTML5 Canvas` or `Konva.js` / `Fabric.js`  
+- ⚛️ React - vite 
+- 🎨 Tailwind CSS  
+- 🕸 Canvas rendering using `HTML5 Canvas` 
 
 **Backend**  
-- 🌐 Node.js + Express / NestJS  
-- 🔌 Socket.IO / WebSocket for real-time communication  
-- 🗄 MongoDB / PostgreSQL for persistence  
-- 📦 Redis for pub/sub (scaling WebSocket events across instances)
-
-**Mobile (Optional)**  
-- 📱 React Native / Flutter using same APIs.
+- 🌐 Node.js + Express 
+- 🔌 Socket.IO - WebSocket for real-time communication  
+- 🗄 MongoDB   for db
 
 **Other**  
 - 🔐 JWT / OAuth2 for authentication  
-- ☁️ Cloud storage (e.g., AWS S3) for exported files  
-- 📈 Monitoring & logging (e.g., Prometheus / Grafana / Logtail)
+- ☁️ mongodb storage storage for exported file
 
 ---
 
@@ -166,20 +161,22 @@ You can adapt this section to your actual implementation.
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (LTS)
-- Database (MongoDB / PostgreSQL)
+- Database (MongoDB)
 - npm / yarn / pnpm
 
 ### Installation
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/collab-board.git
-cd collab-board
+git clone https://github.com/Pragativarshney16/team-19-project
+cd team-19-project
 
 # 2. Install server dependencies
 cd server
 npm install
+npm run dev
 
 # 3. Install client dependencies
 cd ../client
 npm install
+npm run dev
