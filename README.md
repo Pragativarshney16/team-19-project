@@ -1,5 +1,15 @@
 # 🎨 CollabBoard – Real-Time Collaborative Whiteboard
 
+## 👥 Team Members
+
+| Name | Role |  |
+|------|------|--------|
+| **Gourav Sharma** | Frontend + Documentation | 
+| **Pragati Varshney** | Backend |
+| **Rachit Upadhyay** | Frontend _ socket |
+| **Shubhang gourav Mishra** | Backend | 
+| **Alok Bhadauria** | Frontend _ UI| 
+
 > A full-stack, real-time collaborative whiteboard for remote teams, classrooms, and creators.  
 > Draw, chat, annotate, and share ideas — all in one place.
 
