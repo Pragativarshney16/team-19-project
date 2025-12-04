@@ -8,7 +8,6 @@ export default function Whiteboard({ sessionId, user, tool, color, size, addText
   const undoStack = useRef([]);
   const redoStack = useRef([]);
 
-  // initialize canvas and socket listeners
   useEffect(() => {
     const canvas = canvasRef.current;
     canvas.width = 1200;
@@ -37,7 +36,6 @@ export default function Whiteboard({ sessionId, user, tool, color, size, addText
     };
   }, [sessionId]);
 
-  // helpers
   function getPointer(e) {
     const rect = canvasRef.current.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -49,7 +47,6 @@ export default function Whiteboard({ sessionId, user, tool, color, size, addText
     const data = canvasRef.current.toDataURL();
     undoStack.current.push(data);
     if (undoStack.current.length > 50) undoStack.current.shift();
-    // clear redo on new action
     redoStack.current = [];
   }
 
@@ -63,13 +60,11 @@ export default function Whiteboard({ sessionId, user, tool, color, size, addText
     img.src = dataURL;
   }
 
-  // drawing functions
   function handlePointerDown(e) {
     if (!sessionId) { alert("Join or create a session first"); return; }
 
     const p = getPointer(e);
     if (addTextMode) {
-      // adding text: ask user and draw
       const text = prompt("Enter text");
       if (text) {
         pushUndo();
@@ -107,7 +102,6 @@ export default function Whiteboard({ sessionId, user, tool, color, size, addText
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
 
-    // emit small payload to others
     socket.emit("drawing", { sessionId, payload: { x: p.x, y: p.y, tool, color, size } });
     e.preventDefault();
   }
@@ -148,7 +142,6 @@ export default function Whiteboard({ sessionId, user, tool, color, size, addText
     drawText(payload);
   }
 
-  // undo/redo
   function undo(local = true) {
     if (undoStack.current.length === 0) return;
     const prev = undoStack.current.pop();
