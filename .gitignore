@@ -1,0 +1,12 @@
+# Root ignores
+node_modules/
+.env
+
+# For safety (even though subfolders have their own)
+backend/node_modules/
+frontend/node_modules/
+backend/.env
+frontend/.env
+
+dist/
+build/
