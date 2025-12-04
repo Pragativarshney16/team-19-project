@@ -173,7 +173,6 @@ export default function Whiteboard({ sessionId, user, tool, color, size, addText
   }
 
   return (
-    // Frontend structure
     <div>
       <div className="border">
         <canvas
