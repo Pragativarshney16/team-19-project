@@ -4,6 +4,7 @@ import { io } from "socket.io-client";
 const socket = io("http://localhost:5000");
 
 export default function Whiteboard({ sessionId, token, tool, color, size }) {
+
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -166,3 +167,31 @@ export default function Whiteboard({ sessionId, token, tool, color, size }) {
     socket.emit("saveSession", { sessionId, canvasData: data });
   }
 
+  return (
+    <div>
+      <div className="mb-2">
+        <button onMouseDown={start} onMouseUp={end} onMouseMove={draw} onTouchStart={start} onTouchEnd={end} onTouchMove={draw} className="hidden">draw</button>
+      </div>
+      <canvas ref={canvasRef} className="border bg-white rounded shadow" />
+      <div className="mt-2 flex gap-2">
+        <button className="px-3 py-1 bg-gray-200" onClick={() => { pushUndo(); }}>Snapshot</button>
+        <button className="px-3 py-1 bg-blue-500 text-white" onClick={() => undo()}>Undo</button>
+        <button className="px-3 py-1 bg-blue-500 text-white" onClick={() => redo()}>Redo</button>
+        <button className="px-3 py-1 bg-green-500 text-white" onClick={() => { const url = exportImage(); const a = document.createElement("a"); a.href = url; a.download = "whiteboard.png"; document.body.appendChild(a); a.click(); a.remove(); }}>Export PNG</button>
+        <button className="px-3 py-1 bg-yellow-500" onClick={saveToServer}>Save</button>
+      </div>
+
+      <div className="mt-2">
+        <label className="mr-2">Add text:</label>
+        <input placeholder="Text to add" id="wb-text" className="border p-1 mr-2" />
+        <button className="px-2 py-1 bg-indigo-500 text-white" onClick={() => {
+          const el = document.getElementById("wb-text");
+          const x = 50, y = 80;
+          addText(x, y, el.value || "Text");
+          el.value = "";
+        }}>Add</button>
+      </div>
+    </div>
+    
+  );
+}
